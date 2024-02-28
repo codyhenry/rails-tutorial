@@ -3,9 +3,16 @@ Rails.application.routes.draw do
   root "articles#index"
 
   #  this creates all standard CRUD routes for a model
-  resources :articles
   # get "/articles", to: "articles#index"
   # get "articles/:id", to: "articles#show"
+  # resources :articles
+
+  # add route to navigate from articles to comments
+  resources :articles do
+    # comments are a nested resource within articles
+    resources :comments
+  end
+
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
